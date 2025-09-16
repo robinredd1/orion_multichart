@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Orion Multi‑Chart (Lite)</title>
+  <link rel="stylesheet" href="/static/css/styles.css"/>
+  <script src="https://s3.tradingview.com/tv.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Orion Multi‑Chart (Lite)</div>
+    <div class="controls">
+      <input id="addSymbolInput" placeholder="Add symbol (e.g., AAPL)"/>
+      <button id="addBtn">Add</button>
+      <label>Timeframe:
+        <select id="intervalSel">
+          <option value="1">1m</option>
+          <option value="5">5m</option>
+          <option value="15">15m</option>
+          <option value="60">60m</option>
+          <option value="D" selected>1D</option>
+        </select>
+      </label>
+      <button id="setAllBtn">Apply to all</button>
+    </div>
+  </header>
+
+  <main class="grid" id="grid"></main>
+
+  <aside class="tape">
+    <h3>Time & Sales (Finnhub)</h3>
+    <div class="tape-controls">
+      <input id="tapeSymbol" placeholder="Symbol for tape" />
+      <button id="tapeStart">Start</button>
+      <button id="tapeStop">Stop</button>
+      <span id="tapeStatus">WS: —</span>
+    </div>
+    <div id="tapeLog"></div>
+  </aside>
+
+  <footer class="footer">
+    <small>Charts: TradingView • Tape: Finnhub WS • For display only (use Thinkorswim to trade)</small>
+  </footer>
+
+  <script>
+    window.DEFAULT_SYMBOLS = {{ default_symbols|tojson }};
+    window.MAX_CHARTS = {{ max_charts }};
+    window.FINNHUB_KEY = "{{ finnhub_key }}";
+  </script>
+  <script src="/static/js/multichart.js"></script>
+</body>
+</html>
